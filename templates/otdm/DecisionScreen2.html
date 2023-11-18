@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+<p>When you fill out a choice list, you may feel <b>uncertain about whether you prefer the left or right payment option</b>. On decision screen 2, we will ask you to select a button to indicate <b>how certain</b> you are how much money the larger later payment is worth to you in terms of dollars at the earlier payment date.</p>
+<p>In this question, we are interested in <b>your uncertainty about your own preferences regarding these payments</b>.</p>
+<p>Example: Suppose that on the first decision screen you indicated that you valued $15 today somewhere between $28 and $30 in 11-21-2023. Your second decision screen would look like this.</p>
+
+    {% next_button %}
+{% endblock %}
+
+

@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Comprehension Questions
+{% endblock %}
+
+
+{% block content %}
+<style>
+    /* Custom CSS code for horizontal scrolling of radio buttons */
+    .scrollable-radio-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap; /* Ensure the buttons don't wrap to next line */
+        width: 100%; /* Adjust the width as necessary */
+    }
+</style>
+
+
+<div>
+    <p style="margin-bottom: 0;">{{ question_1_text }}</p>
+    {% formfield form.question_1_answer %}
+</div>
+<br>
+<br>
+<div>
+    <p style="margin-bottom: 0;">
+        {{ question_2_text }}
+    </p>
+</div>
+
+<div class="scrollable-radio-buttons">
+    {% formfield form.question_2_answer %}
+</div>
+<br>
+<br>
+<div>
+    <p style="margin-bottom: 0;">{{ question_3_text }}</p>
+    {% formfield form.question_3_answer %}
+</div>
+
+{% next_button %}
+{% endblock %}

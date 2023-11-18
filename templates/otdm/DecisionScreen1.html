@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+<p>Please read these instructions carefully. <b>There will be comprehension checks. If you fail these checks, you will be excluded from the study and you will not receive the completion payment</b>.</p>
+<p>On decision screen 1, you will be asked to choose which of two payment options you prefer. You will see choice lists such as the one below, where <b>each row is a separate choice</b>.</p>
+<img src="{{ static 'image/example1.jpg' }}"/>
+<p>In every list, the left-hand option (Option A) is a payment that you can be paid immediately. The right-hand side option (Option B) is a delayed payment that you will be paid in few days later. To make a choice just click on the option you prefer for each choice (i.e. for each row). <b>An effective way to complete these choice lists is to determine in which row you like to switch from preferring Option A to preferring Option B</b>. </p>
+<p>Note: Money or date will change in subsequent questions.</p>
+<p>Based on where you switch from Option A to Option B in this list, we assess which amount paid immediately (Option A) you value as much as the amount specified at the later payment date (Option B). For example, in the choice list below, you would value $15 today somewhere between $28 and $30 in 11-21-2023, because this is where switching occurs.</p>
+
+<p><b>Auto-completion</b>: The table auto-completes your choices so you don’t have to click through all of the rows. You do not have to start at the top of the table. If you select Option A in any one row, we assume you will also prefer Option A in all rows above that row. If you select Option B in any one row, we assume that you will also prefer Option B in all rows below that row.</p>
+    {% next_button %}
+{% endblock %}
+
+

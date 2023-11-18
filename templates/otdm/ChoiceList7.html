@@ -1,0 +1,155 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load staticfiles %}
+
+{% block title %}
+Block {{ player.current_step }} of 6
+{% endblock %}
+
+{% block content %}
+<p>Today is <b><span id="date"></span></b> (DD-MM-YYYY, DD = day of the month, MM = month, YYYY = year), if you were given the choice between the following two options to receive money, which one would you prefer?</p>
+<p>Note: Money or date will change in subsequent questions.</p>
+
+<script>
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1; // 月份从 0 开始，需要加 1
+        var day = today.getDate();
+
+        var formattedDate = day + '-' + month + '-' + year;
+
+        document.getElementById("date").textContent = formattedDate;
+</script>
+
+<hr>
+
+<div class="progress">
+    <div class="progress-bar" style="width: {{ progress }}%">{{ player.current_step }} / 6</div>
+</div>
+
+<hr>
+
+<div class="otdm__choices-selection">
+
+    <table class="otdm__choices-table table table-bordered table-striped" style="table-layout: fixed;">
+        <thead>
+        <tr class="text-center">
+            <th>Option A</th>
+            <th width="75">A</th>
+            <th width="75">B</th>
+            <th>Option B</th>
+        </tr>
+        </thead>
+        <tbody class="small">
+        {% for day, rev_day in day_gain %}
+        <tr>
+            <td class="text-center">
+                Receiving $15 immediately
+            </td>
+            <td class="text-center otdm__choice-cell">
+                <label>
+                    <input type="radio" name="otdm__option_day{{forloop.counter}}"
+                           class="otdm__choice-input"
+                           value="A" data-day="{{ day }}" data-index="{{ forloop.counter }}">
+                </label>
+            </td>
+            <td class="text-center otdm__choice-cell">
+                <label>
+                    <input type="radio" name="otdm__option_day{{forloop.counter}}"
+                           class="otdm__choice-input"
+                           value="B" data-day="{{ day }}" data-index="{{ forloop.counter }}">
+                </label>
+            </td>
+            <td class="text-center">
+    Receiving $<span class="receiving_amount"></span> on <span class="receiving_date"></span>
+
+<script>
+    // JavaScript code to update the values
+    var receivingAmount = 20; // 初始金额
+    var currentDate = new Date();
+    var futureDate = calculateFutureDate(15); // 计算15天之后的日期
+
+    // 计算日期（假设您希望日期是15天之后的日期）
+    function calculateFutureDate(daysInFuture) {
+        var futureDate = new Date(currentDate);
+        futureDate.setDate(currentDate.getDate() + daysInFuture); // 增加15天
+        var year = futureDate.getFullYear();
+        var month = futureDate.getMonth() + 1;
+        var day = futureDate.getDate();
+        return day + "-" + month + "-" + year;
+    }
+
+    // 获取所有包含 class="receiving_amount" 的元素
+    var amountElements = document.querySelectorAll('.receiving_amount');
+
+    // 更新每个元素的金额
+    amountElements.forEach(function(element) {
+        // 更新HTML中的金额
+        element.textContent = receivingAmount;
+
+        // 递增金额（每行增加2）
+        receivingAmount += 2;
+    });
+
+    // 获取所有包含 class="receiving_date" 的元素
+    var dateElements = document.querySelectorAll('.receiving_date');
+
+    // 更新每个元素的日期
+    dateElements.forEach(function(element) {
+        // 更新HTML中的日期为15天之后的日期
+        element.textContent = futureDate;
+    });
+</script>
+</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="otdm__waiting">
+        You have to select an option above to continue.
+    </div>
+</div>
+
+<div class="otdm__confirm-button-wrapper">
+    <button class="btn btn-primary otdm__confirm-button" type="button">
+        Confirm
+    </button>
+</div>
+
+<div class="otdm__player-confirmation">
+    <h5>Your choices mean that you prefer to:</h5>
+
+    <p class="text-center">
+        <span class="otdm__confirmation-either"></span>
+    </p>
+
+    <p class="text-center">
+        <b>rather than</b>
+    </p>
+
+    <p class="text-center">
+        <span class="otdm__confirmation-other"></span>
+    </p>
+
+    <br>
+
+    <p class="text-center">Are you sure about your choice?</p>
+
+    <div class="text-center">
+        <button class="btn btn-primary otdm__confirmation-yes" type="submit">YES</button>
+        <button class="btn btn-light otdm__confirmation-no" type="button">NO</button>
+    </div>
+</div>
+
+<input class="otdm__value" type="hidden" name="{{ var_name }}">
+
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'otdm/styles/choices.css' %}"/>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'otdm/scripts/choices.js' %}"></script>
+{% endblock %}

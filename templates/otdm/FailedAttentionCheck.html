@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Questions not answered correctly
+{% endblock %}
+
+{% block content %}
+    {% if player.round_number < Constants.num_attention_check_tries %}
+    You did not answer the questions correctly.
+    You will now have the chance to read the instructions again.
+    You have {{ Constants.num_attention_check_tries }} attempts to answer the questions in total.
+    {% next_button %}
+    {% else %}
+        You did not answer the questions correctly {{ Constants.num_attention_check_tries }} times.
+        You cannot continue with the experiment.
+        Please close the experiment now.
+    {% endif %}
+
+{% endblock %}
+
+

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% load static %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+<p>Please take some time to read the following instructions. </p>
+<p>In the first part of the study you will <b>choose between various payment, which pay different amounts at different points in time</b>. An example decision is between the following two actual payments.</p>
+
+<p>In this example we are asking you (actually) would you rather be paid $15 immediately (Option A) or $20 in 11-21-2023 (Option B).</p>
+<p>For this experiment, there are no right wrong answers, because how much you like an option depends on your personal taste. Just <b>try your best to think hard about what you’d really prefer</b>.</p>
+<p>At the end of the experiment we will randomly select xx% of participants to <b>actually be paid their earnings as a bonus today</b> from a randomly selected choice.</p>
+    {% next_button %}
+{% endblock %}
+
+

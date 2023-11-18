@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Congratulations on completing the first part!
+{% endblock %}
+
+{% block content %}
+<p>In the next part of the experiment, we are going to have you make a very different kind of decision, also using choice lists. You could notice changes in the date format compared to the previous part.</p>
+<p>Note: Money or date will change in subsequent questions.</p>
+    {% next_button %}
+{% endblock %}
+
+
